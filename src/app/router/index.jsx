@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-22 14:52:11
  * @LastEditors: xieminhui
- * @LastEditTime: 2021-04-23 11:40:28
+ * @LastEditTime: 2021-04-23 16:23:36
  * @description: 
  */
 
@@ -9,6 +9,7 @@ import {
   HashRouter as Router,
   Switch
 } from "react-router-dom";
+import { Provider } from 'react-redux'
 
 import RouteWithSubRoutes from  '../component/common/RouteWithSubRoutes'
 import Index from '../pages/index'
@@ -35,20 +36,22 @@ const routes = [
   {
     path: "/",
     component: Index
-  },
+  }
 ];
 
 
-export default function Routers () {
+export default function Routers ({ store }) {
   return (
-    <Router>     
-      <Switch>
-          {routes.map((route, i) => (
-            <RouteWithSubRoutes key={i} {...route} />
-          ))}
-        </Switch>
-      <Footer></Footer>
-    </Router>
+    <Provider store={store}>
+      <Router>     
+        <Switch>
+            {routes.map((route, i) => (
+              <RouteWithSubRoutes key={i} {...route} />
+            ))}
+          </Switch>
+        <Footer></Footer>
+      </Router>
+    </Provider>
   )
 }
 
