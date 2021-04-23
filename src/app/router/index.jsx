@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-22 14:52:11
  * @LastEditors: xieminhui
- * @LastEditTime: 2021-04-22 17:12:30
+ * @LastEditTime: 2021-04-23 11:40:28
  * @description: 
  */
 
@@ -11,16 +11,13 @@ import {
 } from "react-router-dom";
 
 import RouteWithSubRoutes from  '../component/common/RouteWithSubRoutes'
-import Index from '../pages/index/index'
+import Index from '../pages/index'
 import User from '../pages/user'
 import Info from '../pages/user/info'
 import edit from '../pages/user/edit'
+import Footer from '../component/common/Footer'
 
 const routes = [
-  {
-    path: "/index",
-    component: Index
-  },
   {
     path: "/user",
     component: User,
@@ -34,7 +31,11 @@ const routes = [
         component: edit
       }
     ]
-  }
+  },
+  {
+    path: "/",
+    component: Index
+  },
 ];
 
 
@@ -46,6 +47,7 @@ export default function Routers () {
             <RouteWithSubRoutes key={i} {...route} />
           ))}
         </Switch>
+      <Footer></Footer>
     </Router>
   )
 }
