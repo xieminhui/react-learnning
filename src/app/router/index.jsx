@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-22 14:52:11
- * @LastEditors: xieminhui
- * @LastEditTime: 2021-04-23 16:23:36
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-04-24 16:41:25
  * @description: 
  */
 
@@ -16,6 +16,7 @@ import Index from '../pages/index'
 import User from '../pages/user'
 import Info from '../pages/user/info'
 import edit from '../pages/user/edit'
+import Swiper from '../pages/swiper'
 import Footer from '../component/common/Footer'
 
 const routes = [
@@ -32,6 +33,10 @@ const routes = [
         component: edit
       }
     ]
+  },
+  {
+    path: "/swiper",
+    component: Swiper
   },
   {
     path: "/",

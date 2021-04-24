@@ -15,6 +15,9 @@ export default function footer () {
         <li>
           <Link to="/user">User</Link>
         </li>
+        <li>
+          <Link to="/swiper">Swiper</Link>
+        </li>
       </ul>
     </>
   )
