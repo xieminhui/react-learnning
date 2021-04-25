@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-22 14:52:11
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-04-24 16:41:25
+ * @LastEditTime: 2021-04-25 11:02:27
  * @description: 
  */
 
@@ -17,7 +17,7 @@ import User from '../pages/user'
 import Info from '../pages/user/info'
 import edit from '../pages/user/edit'
 import Swiper from '../pages/swiper'
-import Footer from '../component/common/Footer'
+import Header from '../component/common/Header'
 
 const routes = [
   {
@@ -49,12 +49,12 @@ export default function Routers ({ store }) {
   return (
     <Provider store={store}>
       <Router>     
+        <Header></Header>
         <Switch>
             {routes.map((route, i) => (
               <RouteWithSubRoutes key={i} {...route} />
             ))}
           </Switch>
-        <Footer></Footer>
       </Router>
     </Provider>
   )

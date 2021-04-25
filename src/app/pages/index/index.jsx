@@ -5,7 +5,7 @@ export default function Index (){
   return (
     <div>
       <h2>this is index page</h2>
-      <span>Show:</span>
+      <p>react redux demo:</p>
 
       <FilterLink filter={VisibilityFilters.SHOW_ALL}>ALL</FilterLink>
       <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
