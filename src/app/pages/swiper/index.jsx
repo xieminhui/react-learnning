@@ -1,11 +1,13 @@
 
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 // import {shuffle} from '../../utils'
 
 import Item from './item'
 import Button from '../../component/Button'
 
 import styles from './index.module.less'
+
+let cycleId = 3;
 
 const Swiper = () => {
     const data = [
@@ -34,12 +36,13 @@ const Swiper = () => {
         }
     ]);
     const [init, changeInit] = useState(false)
+    const [animationEnd, changeAnimation] = useState(false)
     const [currentPage, changCurrentPage] = useState(1)
-    useEffect(() => {
-        const ret = deleteFirst(list);
-        const data = pushData(ret);
-        changeData(data);
-    }, [currentPage])
+    // useEffect(() => {
+    //     const ret = deleteFirst(list);
+    //     const data = pushData(ret);
+    //     changeData(data);
+    // }, [currentPage])
     const getRenderStyle = (index) => {
         if(!init) return;
         if(currentPage === index + 1 ) {
@@ -49,16 +52,25 @@ const Swiper = () => {
                 transition: 'all 0.6s'
             }
         } else {
-            return {
-                background: 'red'
-            }
-            
+            return {}
         }
     }
 
     const change = () => {
+        if(animationEnd) return;
         changCurrentPage(currentPage+1);
+        changeAnimation(true);
         changeInit(true);
+        changeList();
+    }
+
+    const changeList = () => {
+        setTimeout(() => {
+            const ret = deleteFirst(list);
+            const data = pushData(ret);
+            changeData(data);
+            changeAnimation(false);
+        }, 600);
     }
 
     const deleteFirst= (arr) => {
@@ -67,9 +79,10 @@ const Swiper = () => {
     }
 
     const pushData = (arr) => {
-        let newItem = data[Math.random() > 0.5 ? 0 : 1];
+        let newItem = data[cycleId%3];
         newItem.id = list[list.length-1].id + 1;
         arr.push(newItem);
+        cycleId++;
         return arr;
     }
 
