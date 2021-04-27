@@ -1,4 +1,5 @@
 
+// 注意这个变量是共享的，在每个引用该组件的时候，该变量是共享的
 let count  = 1;
 
 const StaticComponent = () => {

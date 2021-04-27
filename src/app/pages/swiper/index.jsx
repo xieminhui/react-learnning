@@ -1,13 +1,16 @@
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, useCallback} from 'react';
 // import {shuffle} from '../../utils'
 
 import Item from './item'
 import Button from '../../component/Button'
 import StaticComponent from './static'
+import StaticPropComponent from './staticProp'
 import styles from './index.module.less'
 
+// 记忆缓存组件，不会重复渲染
 const Static = memo(StaticComponent)
+const StaticProp = memo(StaticPropComponent)
 
 let cycleId = 3;
 
@@ -93,6 +96,11 @@ const Swiper = () => {
         return arr;
     }
 
+    const title = '我是传入的title';
+    const propFn = () => (1)
+    const staticFn = useCallback(() => {
+        return propFn();
+    }, [])
     return (
         <>
         <div className={styles['swiper-container']}>
@@ -108,6 +116,13 @@ const Swiper = () => {
             <section>
                 <p>我使用了memo</p>
                 <Static></Static>
+            </section>
+        </div>
+        <div className={`${styles['flex']}`}>
+            <StaticProp propFn={propFn} title={title}></StaticProp>
+            <section>
+                <p>我用了useCallback</p>
+                <StaticProp title={title} propFn={staticFn}></StaticProp>
             </section>
         </div>
         </>
