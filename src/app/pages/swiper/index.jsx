@@ -1,11 +1,13 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 // import {shuffle} from '../../utils'
 
 import Item from './item'
 import Button from '../../component/Button'
-
+import StaticComponent from './static'
 import styles from './index.module.less'
+
+const Static = memo(StaticComponent)
 
 let cycleId = 3;
 
@@ -92,6 +94,7 @@ const Swiper = () => {
     }
 
     return (
+        <>
         <div className={styles['swiper-container']}>
             {
                 list.map((v, i) => 
@@ -100,6 +103,14 @@ const Swiper = () => {
             }
             <Button text="下一个" handleClick={() => change()}></Button>
         </div>
+        <div className={`${styles['flex']}`}>
+            <StaticComponent></StaticComponent>
+            <section>
+                <p>我使用了memo</p>
+                <Static></Static>
+            </section>
+        </div>
+        </>
     )
 }
 
