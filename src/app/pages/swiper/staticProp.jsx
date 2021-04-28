@@ -1,10 +1,13 @@
-let count  = 1;
+import { useRef } from "react";
 
 const StatiPropscComponent = (props) => {
+    const countRef = useRef(1);
+    const testRef = useRef('test');
+    console.log(countRef, testRef);
     return (
         <section>
             <div onClick={props.propFn}>{props.title}</div>
-            <p>我被调用渲染了{count++}次</p>
+            <p>我被调用渲染了{countRef.current++}次</p>
         </section>
     )
 }
